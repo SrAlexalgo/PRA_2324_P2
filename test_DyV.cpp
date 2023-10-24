@@ -23,5 +23,22 @@ int main() {
         std::cout << "El valor " << X << " no se encuentra en el vector." << std::endl;
     }
 
+    std::vector<int> b = {9, 7, 5, 2, 8, 1, 4, 10, 6, 3};
+    int ini = 0;
+    int fin = b.size() - 1;
+
+    float timeFirst = MeasureQuickSortTime(QuickSortFirst, b, ini, fin);
+    std::cout << "QuickSort (Pivote en el primer elemento) - Tiempo: " << timeFirst << " ms" << std::endl;
+
+    b = {9, 7, 5, 2, 8, 1, 4, 10, 6, 3};
+
+    float time = MeasureQuickSortTime(QuickSort, b, ini, fin);
+    std::cout << "QuickSort (Pivote en la última posición) - Tiempo: " << time << " ms" << std::endl;
+
+    b = {9, 7, 5, 2, 8, 1, 4, 10, 6, 3};
+
+    float timeCentral = MeasureQuickSortTime(QuickSortCentral, b, ini, fin);
+    std::cout << "QuickSort (Pivote en el elemento central) - Tiempo: " << timeCentral << " ms" << std::endl;
+
     return 0;
 }
