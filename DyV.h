@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <chrono>
+#include <cstdlib>
+#include <ctime>
 
 template <typename T>
 int BusquedaBinaria(const T& x, const std::vector<T>& V, int ini, int fin) {
@@ -67,6 +69,8 @@ void QuickSort(std::vector<T>& V, int ini, int fin) {
 template <typename T>
 void QuickSortFirst(std::vector<T>& V, int ini, int fin) {
     if (ini < fin) {
+	std::swap(V[ini], V[fin]);
+	
         int pivot = Partition(V, ini, fin);
         QuickSortFirst(V, ini, pivot - 1);
         QuickSortFirst(V, pivot + 1, fin);
@@ -78,6 +82,18 @@ void QuickSortCentral(std::vector<T>& V, int ini, int fin) {
     if (ini < fin) {
         int middle = (ini + fin) / 2;
         std::swap(V[middle], V[fin]);
+
+        int pivot = Partition(V, ini, fin);
+        QuickSortCentral(V, ini, pivot - 1);
+        QuickSortCentral(V, pivot + 1, fin);
+    }
+}
+
+template <typename T>
+void QuickSortRandom(std::vector<T>& V, int ini, int fin) {
+    if (ini < fin) {
+    	int randomIndex = ini + rand() % (fin - ini + 1);
+    	std::swap(V[randomIndex], V[fin]);
 
         int pivot = Partition(V, ini, fin);
         QuickSortCentral(V, ini, pivot - 1);
